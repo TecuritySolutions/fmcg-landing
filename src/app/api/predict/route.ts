@@ -3,7 +3,7 @@ import { PredictionRequest, PredictionResponse, ExternalAPIResponse } from '@/ty
 
 // Configuration
 const EXTERNAL_API_URL = process.env.EXTERNAL_API_URL || 'https://fmcg-api.onrender.com';
-const API_TIMEOUT = parseInt(process.env.EXTERNAL_API_TIMEOUT || '30000');
+const API_TIMEOUT = parseInt(process.env.EXTERNAL_API_TIMEOUT || '100000');
 
 // External API call function
 async function callExternalAPI(data: PredictionRequest): Promise<ExternalAPIResponse> {
