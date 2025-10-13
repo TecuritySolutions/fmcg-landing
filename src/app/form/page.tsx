@@ -571,7 +571,7 @@ export default function PredictionForm() {
                   <div className="inline-block bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-8 text-white shadow-xl">
                     <div className="text-6xl font-extrabold mb-2">{result.data.score}</div>
                     <div className="text-xl">Retail Score</div>
-                    <div className="text-sm opacity-90">out of 100</div>
+                    <div className="text-sm opacity-90">out of 30</div>
                   </div>
                   <div className="mt-4">
                     <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${

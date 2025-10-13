@@ -50,7 +50,7 @@ export interface ExternalAPIResponse {
 export interface PredictionResponse {
   success: boolean;
   data?: {
-    score: number; // 0-100
+    score: number; // 0-30
     model_used: string;
     prediction_id: string;
     analysis: {

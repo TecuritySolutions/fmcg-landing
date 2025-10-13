@@ -30,7 +30,7 @@ export default function LandingPage() {
     {
       icon: Target,
       title: 'Smart Scoring',
-      description: 'ML algorithms evaluate outlets on a 0-100 scale, analyzing location, demographics, competition, and 13 other critical factors.',
+      description: 'ML algorithms evaluate outlets on a 0-30 scale, analyzing location, demographics, competition, and 13 other critical factors.',
       color: 'from-purple-500 to-pink-500'
     },
     {
@@ -79,7 +79,7 @@ export default function LandingPage() {
     {
       number: '3',
       title: 'Score Generation',
-      description: 'Receive precise 0-100 retail scores with R²=0.81 correlation to expert evaluations'
+      description: 'Receive precise 0-30 retail scores with R²=0.81 correlation to expert evaluations'
     },
     {
       number: '4',
@@ -216,7 +216,8 @@ export default function LandingPage() {
                     {step.number}
                   </div>
                   {idx < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-purple-600 to-indigo-600"></div>
+                    <div className="hidden lg:block absolute top-10 left-1/2 h-0.5 bg-gradient-to-r from-purple-600 to-indigo-600"
+                         style={{width: 'calc(100% + 2rem)', transform: 'translateX(2.5rem)'}}></div>
                   )}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{step.title}</h3>
@@ -305,7 +306,7 @@ export default function LandingPage() {
               <span className="text-2xl font-bold">RetailScore AI</span>
             </div>
             <div className="text-gray-400">
-              © 2024 RetailScore AI. Powered by Advanced Machine Learning & LLM Technology
+              © 2025 RetailScore AI. Powered by Tecurity
             </div>
           </div>
         </div>

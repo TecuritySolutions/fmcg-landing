@@ -43,9 +43,9 @@ function transformExternalResponse(
   originalRequest: PredictionRequest,
   processingTime: number
 ): PredictionResponse['data'] {
-  const score = Math.min(100, Math.max(0, Math.round(externalData.prediction_score)));
+  const score = Math.min(30, Math.max(0, Math.round(externalData.prediction_score)));
   const analysis = generateAnalysis(originalRequest, score);
-  const risk_assessment = score >= 70 ? 'Low' : score >= 50 ? 'Medium' : 'High';
+  const risk_assessment = score >= 21 ? 'Low' : score >= 15 ? 'Medium' : 'High';
 
   return {
     score,
@@ -98,7 +98,7 @@ function generateAnalysis(data: PredictionRequest, score: number) {
   }
 
   // Generate recommendations
-  if (score < 50) {
+  if (score < 15) {
     recommendations.push('Consider infrastructure upgrades to improve operational efficiency');
     recommendations.push('Implement preventive maintenance schedule to reduce breakdowns');
   }
@@ -111,7 +111,7 @@ function generateAnalysis(data: PredictionRequest, score: number) {
   if (data.flood_impacted === 1 && data.flood_proof === 0) {
     recommendations.push('Implement flood protection measures');
   }
-  if (score >= 70) {
+  if (score >= 21) {
     recommendations.push('Excellent facility - consider expanding capacity');
     recommendations.push('Use as a model for other warehouse locations');
   }
