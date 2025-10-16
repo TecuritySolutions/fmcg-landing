@@ -30,7 +30,7 @@ export default function LandingPage() {
     {
       icon: Target,
       title: 'Smart Scoring',
-      description: 'ML algorithms evaluate outlets on a 0-30 scale, analyzing location, demographics, competition, and 13 other critical factors.',
+      description: 'AI algorithm evaluate outlets on a 0-30 scale, analyzing location, demographics, competition, and 13 other critical factors.',
       color: 'from-purple-500 to-pink-500'
     },
     {
@@ -42,7 +42,7 @@ export default function LandingPage() {
     {
       icon: Zap,
       title: 'Real-Time Analysis',
-      description: 'Evaluate thousands of outlets simultaneously with 2.3-second average processing time per location.',
+      description: 'Evaluate thousands of outlets with 2.3-second average processing time per location.',
       color: 'from-orange-500 to-red-500'
     },
     {
@@ -59,7 +59,7 @@ export default function LandingPage() {
     },
     {
       icon: TrendingUp,
-      title: 'Continuous Learning',
+      title: 'Custom Whitelabel solution',
       description: 'Models improve over time with new data, delivering increasingly accurate predictions and recommendations.',
       color: 'from-pink-500 to-rose-500'
     }

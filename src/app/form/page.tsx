@@ -28,7 +28,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'WH_capacity_size',
-    label: 'Warehouse Capacity Size',
+    label: 'Retail Shop Capacity Size',
     type: 'select',
     required: true,
     options: [
@@ -89,7 +89,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'retail_shop_num',
-    label: 'Retail Shop Count',
+    label: 'Retail Shop Count (in the area)',
     type: 'number',
     required: true,
     min: 0,
@@ -97,12 +97,12 @@ const formFields: FormField[] = [
   },
   {
     name: 'wh_owner_type',
-    label: 'Warehouse Owner Type',
+    label: 'Retail Owner Type',
     type: 'select',
     required: true,
     options: [
       { value: 'Private', label: 'Private' },
-      { value: 'Government', label: 'Government' },
+      // { value: 'Government', label: 'Government' },
       { value: 'Franchise', label: 'Franchise' }
     ]
   },
@@ -128,7 +128,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'electric_supply',
-    label: 'Electric Supply Available',
+    label: '24 hours Electricity Available',
     type: 'toggle',
     required: true
   },
@@ -142,7 +142,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'workers_num',
-    label: 'Number of Workers',
+    label: 'Number of Employees',
     type: 'number',
     required: true,
     min: 0,
@@ -150,7 +150,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'wh_est_year',
-    label: 'Warehouse Established Year',
+    label: 'Retail Shop Established Year',
     type: 'number',
     required: true,
     min: 1980,
@@ -184,7 +184,7 @@ const formFields: FormField[] = [
   },
   {
     name: 'wh_breakdown_l3m',
-    label: 'Warehouse Breakdowns (Last 3 Months)',
+    label: 'Retail Shop Closure (Last 3 Months)',
     type: 'number',
     required: true,
     min: 0,
@@ -504,9 +504,9 @@ export default function PredictionForm() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Page Title */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">FMCG Warehouse Prediction</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">FMCG Retail Credit Scoring</h1>
           <p className="text-xl text-gray-600">
-            Enter warehouse and operational data to get AI-powered retail scoring and insights
+            Enter retail shop and operational data to get AI-powered retail scoring and insights
           </p>
         </div>
 
