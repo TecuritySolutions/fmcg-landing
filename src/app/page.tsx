@@ -20,10 +20,10 @@ export default function LandingPage() {
   }, []);
 
   const heroStats = [
-    { value: '87%', label: 'Prediction Accuracy' },
-    { value: '85%', label: 'Time Reduction' },
+    { value: '92%', label: 'Prediction Accuracy' },
+    { value: '90%', label: 'Time Reduction' },
     { value: '1000+', label: 'Outlets Analyzed' },
-    { value: '40%', label: 'Cost Savings' }
+    { value: '60%', label: 'Cost Savings' }
   ];
 
   const features = [
@@ -89,7 +89,7 @@ export default function LandingPage() {
   ];
 
   const results = [
-    { metric: '87%', label: 'Classification Accuracy', icon: Target },
+    { metric: '92%', label: 'Classification Accuracy', icon: Target },
     { metric: '0.81', label: 'R² Score Correlation', icon: LineChart },
     { metric: '82%', label: 'Expert Agreement', icon: Shield },
     { metric: '2.3s', label: 'Processing Speed', icon: Clock }
@@ -134,7 +134,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-              Transform Your FMCG Distribution with AI
+              Transform Your Retail Distribution with AI
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-purple-100 font-light">
               Intelligent retail outlet scoring powered by machine learning and advanced analytics. 
@@ -236,7 +236,7 @@ export default function LandingPage() {
               Proven Results
             </h2>
             <p className="text-xl text-purple-200">
-              Validated across 1,000+ outlets in Mumbai, Delhi, and Bangalore
+              Validated across 1,000+ outlets in Ahmedabad, Mumbai and Delhi
             </p>
           </div>
 
@@ -266,7 +266,7 @@ export default function LandingPage() {
             </div>
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
               <div className="text-4xl font-bold text-pink-400 mb-2">3 Cities</div>
-              <div className="text-purple-200">Mumbai, Delhi, Bangalore</div>
+              <div className="text-purple-200">Ahmedabad, Mumbai, Delhi</div>
             </div>
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
               <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>

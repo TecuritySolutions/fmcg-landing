@@ -63,57 +63,65 @@ function generateAnalysis(data: PredictionRequest, score: number) {
   const weaknesses: string[] = [];
   const recommendations: string[] = [];
 
-  // Analyze strengths
-  if (data.Location_type === 'Urban') {
-    strengths.push('Strategic urban location with high market potential');
+  // Analyze strengths based on visible fields
+  if (data.WH_capacity_size === 'Large') {
+    strengths.push('Large capacity facility supports high volume operations');
   }
-  if (data.electric_supply === 1) {
-    strengths.push('Reliable electrical infrastructure');
+  if (data.workers_num >= 50) {
+    strengths.push('Strong workforce capacity for efficient operations');
   }
-  if (data.flood_proof === 1) {
-    strengths.push('Flood-resistant infrastructure reduces risk');
+  if (data.wh_est_year <= 2000) {
+    strengths.push('Well-established business with proven track record');
   }
-  if (data.temp_reg_mach === 1) {
-    strengths.push('Temperature regulation capability for product quality');
+  if (data.wh_owner_type === 'Franchise') {
+    strengths.push('Franchise model provides operational support and branding');
+  }
+  if (data.Competitor_in_mkt <= 3) {
+    strengths.push('Low competition environment offers market advantages');
   }
   if (data.approved_wh_govt_certificate === 'A+' || data.approved_wh_govt_certificate === 'A') {
-    strengths.push('High-grade government certification');
+    strengths.push('High-grade government certification ensures quality standards');
   }
 
-  // Analyze weaknesses
-  if (data.transport_issue_l1y > 5) {
-    weaknesses.push('Frequent transport issues affecting supply chain');
+  // Analyze weaknesses based on visible fields
+  if (data.WH_capacity_size === 'Small') {
+    weaknesses.push('Limited capacity may restrict growth potential');
   }
-  if (data.storage_issue_reported_l3m > 10) {
-    weaknesses.push('Multiple storage problems reported recently');
+  if (data.workers_num < 10) {
+    weaknesses.push('Small workforce may limit operational efficiency');
   }
-  if (data.wh_breakdown_l3m > 3) {
-    weaknesses.push('High frequency of warehouse breakdowns');
+  if (data.wh_est_year >= 2020) {
+    weaknesses.push('Newer business may lack operational experience');
+  }
+  if (data.approved_wh_govt_certificate === 'C') {
+    weaknesses.push('Lower certification grade indicates compliance concerns');
   }
   if (data.Competitor_in_mkt > 7) {
     weaknesses.push('High competition density in the market');
   }
-  if (data.dist_from_hub > 500) {
-    weaknesses.push('Located far from distribution hub');
-  }
 
-  // Generate recommendations
+  // Generate recommendations based on visible fields and score
+  if (data.WH_capacity_size === 'Small') {
+    recommendations.push('Consider facility expansion to increase capacity');
+  }
+  if (data.workers_num < 20) {
+    recommendations.push('Invest in staff training and hiring to improve operations');
+  }
+  if (data.approved_wh_govt_certificate === 'B' || data.approved_wh_govt_certificate === 'C') {
+    recommendations.push('Focus on improving certification to A+ grade');
+  }
+  if (data.Competitor_in_mkt > 5) {
+    recommendations.push('Develop competitive advantages through service differentiation');
+  }
+  if (data.wh_est_year >= 2015) {
+    recommendations.push('Build operational expertise through process optimization');
+  }
   if (score < 15) {
-    recommendations.push('Consider infrastructure upgrades to improve operational efficiency');
-    recommendations.push('Implement preventive maintenance schedule to reduce breakdowns');
-  }
-  if (data.temp_reg_mach === 0) {
-    recommendations.push('Install temperature regulation systems for product quality');
-  }
-  if (data.transport_issue_l1y > 3) {
-    recommendations.push('Review and optimize transportation logistics');
-  }
-  if (data.flood_impacted === 1 && data.flood_proof === 0) {
-    recommendations.push('Implement flood protection measures');
+    recommendations.push('Focus on improving key business metrics for better performance');
   }
   if (score >= 21) {
-    recommendations.push('Excellent facility - consider expanding capacity');
-    recommendations.push('Use as a model for other warehouse locations');
+    recommendations.push('Excellent facility - consider expanding capacity and operations');
+    recommendations.push('Use as a model for other retail locations');
   }
 
   return { strengths, weaknesses, recommendations };

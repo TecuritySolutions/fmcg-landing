@@ -37,6 +37,9 @@ export interface PredictionRequest {
 
   // Product Details
   product_wg_ton: number; // 0-50000 tons
+
+  // Location Details
+  pincode: string;
 }
 
 // External API Response Format
@@ -78,4 +81,18 @@ export interface FormField {
   min?: number;
   max?: number;
   step?: number;
+  hidden?: boolean;
+  fixedValue?: string | number;
+  randomRange?: [number, number];
+}
+
+// Pincode API Response
+export interface PincodeResponse {
+  details?: {
+    landmark: string;
+    pincode: string;
+    population: string;
+  };
+  status: string;
+  error?: string;
 }
