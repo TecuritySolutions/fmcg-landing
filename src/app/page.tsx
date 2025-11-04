@@ -1,10 +1,14 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { BarChart3, Brain, TrendingUp, Zap, Target, Clock, Sparkles, CheckCircle2, ArrowRight, Globe2, Shield, LineChart } from 'lucide-react';
+import { BarChart3, Brain, TrendingUp, Zap, Target, Clock, Sparkles, CheckCircle2, ArrowRight, Globe2, Shield, LineChart, RotateCcw, BarChart, Percent, TrendingDown } from 'lucide-react';
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
+
+  // Calculator state
+  const [annualRevenue, setAnnualRevenue] = useState(500);
+  const [companySize, setCompanySize] = useState<'small' | 'medium' | 'large'>('small');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -18,6 +22,38 @@ export default function LandingPage() {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  // Calculator functions
+  const getLeakagePercentage = () => {
+    switch (companySize) {
+      case 'small': return 8;
+      case 'medium': return 10;
+      case 'large': return 15;
+      default: return 8;
+    }
+  };
+
+  const calculateMetrics = () => {
+    const leakagePercent = getLeakagePercentage();
+    const estimatedLeakage = (annualRevenue * leakagePercent) / 100;
+    const toplineImpact = estimatedLeakage * 6.5; // Assumed multiplier
+    const netMarginImprovement = (estimatedLeakage / annualRevenue) * 100;
+    const roi = 4.7; // Fixed ROI as shown in design
+
+    return {
+      estimatedLeakage,
+      toplineImpact,
+      netMarginImprovement,
+      roi
+    };
+  };
+
+  const resetCalculator = () => {
+    setAnnualRevenue(500);
+    setCompanySize('small');
+  };
+
+  const metrics = calculateMetrics();
 
   const heroStats = [
     { value: '92%', label: 'Prediction Accuracy' },
@@ -293,6 +329,135 @@ export default function LandingPage() {
             <button className="border-2 border-purple-600 text-purple-600 px-10 py-4 rounded-full text-lg font-bold hover:bg-purple-50 transition-all duration-300">
               View Documentation
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section className="py-24 px-6 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Calculate Your Potential Savings
+            </h2>
+            <p className="text-xl text-purple-200">
+              Discover how much you could save by optimizing your accounts payable process
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Left Panel - Your Assumptions */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-bold text-white">Your Assumptions</h3>
+                <button
+                  onClick={resetCalculator}
+                  className="flex items-center space-x-2 text-purple-300 hover:text-white transition-colors"
+                >
+                  <RotateCcw className="w-5 h-5" />
+                  <span>Reset</span>
+                </button>
+              </div>
+
+              {/* Annual Revenue Slider */}
+              <div className="mb-8">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-lg font-medium text-gray-300">Annual Revenue</label>
+                  <span className="text-2xl font-bold text-blue-400">₹{annualRevenue.toFixed(1)} Cr</span>
+                </div>
+                <div className="relative">
+                  <input
+                    type="range"
+                    min="50"
+                    max="2000"
+                    step="10"
+                    value={annualRevenue}
+                    onChange={(e) => setAnnualRevenue(parseFloat(e.target.value))}
+                    className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                    style={{
+                      background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${((annualRevenue - 50) / (2000 - 50)) * 100}%, #374151 ${((annualRevenue - 50) / (2000 - 50)) * 100}%, #374151 100%)`
+                    }}
+                  />
+                  <div className="flex justify-between text-sm text-gray-400 mt-2">
+                    <span>₹50 Cr</span>
+                    <span>₹2000 Cr</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Company Size Selection */}
+              <div className="mb-8">
+                <label className="text-lg font-medium text-gray-300 mb-4 block">Company Size</label>
+                <div className="flex space-x-3">
+                  {[
+                    { key: 'small', label: 'Small' },
+                    { key: 'medium', label: 'Medium' },
+                    { key: 'large', label: 'Large' }
+                  ].map((size) => (
+                    <button
+                      key={size.key}
+                      onClick={() => setCompanySize(size.key as 'small' | 'medium' | 'large')}
+                      className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                        companySize === size.key
+                          ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg transform scale-105'
+                          : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
+                      }`}
+                    >
+                      {size.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-xl text-lg font-bold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+                <BarChart className="w-6 h-6" />
+                <span>Book a Free Assessment</span>
+              </button>
+            </div>
+
+            {/* Right Panel - Your Estimated Opportunity */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white mb-6">Your Estimated Opportunity</h3>
+
+              {/* Estimated Annual Leakage */}
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                <div className="text-gray-300 text-lg mb-2">Estimated Annual Loss</div>
+                <div className="text-4xl font-bold text-blue-400">₹{metrics.estimatedLeakage.toFixed(1)} Cr</div>
+              </div>
+
+              {/* Topline Impact */}
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center space-x-2 text-gray-300 text-lg mb-2">
+                  <TrendingUp className="w-5 h-5" />
+                  <span>Topline Impact</span>
+                </div>
+                <div className="text-4xl font-bold text-green-400">₹{metrics.toplineImpact.toFixed(1)} Cr</div>
+              </div>
+
+              {/* Net Margin Improvement */}
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center space-x-2 text-gray-300 text-lg mb-2">
+                  <Zap className="w-5 h-5" />
+                  <span>Net Margin Improvement</span>
+                </div>
+                <div className="text-4xl font-bold text-orange-400">{metrics.netMarginImprovement.toFixed(2)}%</div>
+              </div>
+
+              {/* Return on Investment */}
+              {/* <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center space-x-2 text-gray-300 text-lg mb-2">
+                  <Target className="w-5 h-5" />
+                  <span>Return on Investment</span>
+                </div>
+                <div className="text-4xl font-bold text-purple-400">{metrics.roi}x</div>
+              </div> */}
+            </div>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="text-center mt-12">
+            <p className="text-gray-400 text-sm">Illustrative — not a quote</p>
           </div>
         </div>
       </section>
