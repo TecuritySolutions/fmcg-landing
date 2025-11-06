@@ -341,7 +341,7 @@ export default function LandingPage() {
               Calculate Your Potential Savings
             </h2>
             <p className="text-xl text-purple-200">
-              Discover how much you could save by optimizing your accounts payable process
+              Discover how much you could save by optimizing your retail credit
             </p>
           </div>
 
